@@ -42,9 +42,12 @@ val x = List(1,2,3,4,5) match {
   * in your implementation if the list is Nil?
   * */
 
-def tail[A](list: List[A]):List[A] = list match {
-  case Nil => Nil
-  case Cons(x, xs) => xs
+/**
+  * Better to return Option. tail of an empty List doesn't exist
+  * */
+def tail[A](list: List[A]): Option[List[A]] = list match {
+  case Nil => None
+  case Cons(x, xs) => Some(xs)
 }
 
 var res = tail(List(1,2,3,4,5))
@@ -55,9 +58,13 @@ var res = tail(List(1,2,3,4,5))
   * first element of a listwith a different
   * value
   */
-def setHead[A](list:List[A], h:A):List[A] = list match {
-  case Nil => List(h)
-  case Cons(head, tail) => Cons(h, tail)
+
+/**
+  * Better to return Option.
+  * */
+def setHead[A](list:List[A], h:A): Option[List[A]] = list match {
+  case Nil => None
+  case Cons(head, tail) => Some(Cons(h, tail))
 }
 
 var res3 = setHead(List(1,2,3,4,5), 9)
