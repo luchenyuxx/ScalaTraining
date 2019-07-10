@@ -31,11 +31,11 @@ println(reverse(List(),List(1,2,3)))
   *
   */
 
-def deepReverse[A](acc: List[List[A]], list:List[A]):List[List[A]] = {
+def deepReverse[A](acc: List[List[A]], list:List[List[A]]):List[List[A]] = {
   list match {
     case Nil => acc
-    case (x::tail) => deepReverse((x::acc.head)::acc,tail)
+    case (x::tail) => deepReverse(reverse(List(), x)::acc,tail)
   }
 }
 
-println(deepReverse(List(List()),List(1,2,3)))
+println(deepReverse(List(List()),List(List(1, 2),List(3, 4))))
